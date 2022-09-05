@@ -1,0 +1,19 @@
+#result {
+    display:block;
+    width:400px;
+    height:200px;
+  }
+  
+  #import {
+    margin:10px 0;
+  }
+
+  table, th, td {
+    border: 1px solid;
+  }
+
+  div {
+    padding-right:7px;
+    padding-top: 7px;
+    padding-left:7px;
+  }
