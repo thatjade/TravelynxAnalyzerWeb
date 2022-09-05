@@ -257,16 +257,26 @@ window.onload = function(){
           var datacomparison = new google.visualization.DataTable();
           datacomparison.addColumn('string', 'word');
           datacomparison.addColumn('number', 'Anzahl Fahrten');
+          datacomparison.addColumn({ role: 'style' });
 
           console.log(Klassifizierung);
 
           for (item of Klassifizierung){
-            datacomparison.addRow([item[0] , item[1]]);
+            if(item[0] == "Fernverkehr"){
+              datacomparison.addRow([item[0] , item[1],'purple']);
+            }
+            else if (item[0] == "Nahverkehr"){
+              datacomparison.addRow([item[0] , item[1],'#C1121C']);
+            }
+            else{
+              datacomparison.addRow([item[0] , item[1],'#ffbf00']);
+            }
           }
 
           //options for klassifizierungschart
           var optionsccomparison = {
-            title:'Zugklasse'
+            title:'Fahrten in Zugklasse',
+            legend: { position: "none" }
           };
           
           //creation of klassifizierungschart
@@ -275,18 +285,20 @@ window.onload = function(){
 
           
           var stundendata = new google.visualization.DataTable();
-          stundendata.addColumn('string', 'word');
+          stundendata.addColumn('string', 'Stunde');
           stundendata.addColumn('number', 'Anzahl Fahrten');
+          stundendata.addColumn({ role: 'style' });
 
           console.log(sortedhourlistwithcounter);
 
           for (item of sortedhourlistwithcounter){
-            stundendata.addRow([item[0]+ "Uhr" , item[1]]);
+            stundendata.addRow([item[0]+ " Uhr" , item[1],'pink']);
           }
 
           //stundendata.sort(function(a,b) { return a[0] - b[0]; });
           var histogramoptions = {
-            title:'Stunden'
+            title:'Fahrten pro Tagesstunde',
+            legend: { position: "none" }
           };
 
           var visualization = new google.visualization.ColumnChart(document.getElementById('histogram'));

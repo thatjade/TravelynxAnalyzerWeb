@@ -6,31 +6,33 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<div class="row">
+<div class="row navbar navbar-dark bg-dark">
     <div class="col">
-        <div class="custom-file">
+        <div class="custom-file" style="margin-left: 30px;">
             <input type="file" class="custom-file-input" id="customFile">
             <label id="filename"class="custom-file-label" for="customFile">history.json auswählen</label>
         </div>
     </div>
     <div class="col">
-        <button id="import" class="btn btn-success">Verarbeiten</button>
+        <button id="import" class="btn btn-success float-right" >Verarbeiten</button>
     </div>
 </div>
-<div class="row">
-    <div id="myChart" style="width:100%; max-width:1000px; height:500px;"></div>
+
+<div class="row" style="margin-left: 0px;">
+    <div id="myChart" style="width:100%; max-width:1000px; height:200px;"></div>
 </div>
-<div class="row">
-    <div id="histogram" style="width:100%; max-width:1000px; height:800px;"></div>
+
+<div class="row" style="margin-left: 0px;">
+    <div id="histogram" style="width:100%; max-width:1000px; height:500px;"></div>
 </div>
 
 <div class="row">
     <div class="col">
-        <div id="TypeChart" style="width:100%; max-width:600px; height:500px;">
+        <div id="TypeChart" style="width:100%; max-width:500px; height:500px;">
         </div>
     </div>
     <div class="col">
-        <div id="CityChart" style="width:100%; max-width:600px; height:500px;">
+        <div id="CityChart" style="width:100%; max-width:500px; height:500px;">
         </div>
     </div>
 </div>
