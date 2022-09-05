@@ -23,6 +23,10 @@ window.onload = function(){
         //List of Places (e.g. Frankfurt (Main) Flughafen Fernbahnhof)
         var citylist = [];
 
+        var datelist = [];
+
+        var hourlist = [];
+
         //Fill the List of Train Types
         for(var i in result){
           typelist.push(result[i].type);
@@ -33,12 +37,25 @@ window.onload = function(){
           citylist.push(result[i].to_name);
         }
 
+
+
+        for(var i in result){
+          datelist.push(new Date(result[i].sched_dep_ts * 1000));
+        }
+
+
+        for(var i in datelist){
+          hourlist.push(datelist[i].getHours());
+        }
+
+
         //Variable that counts all rides
         var allrides = typelist.length;
 
         //Make a List with removed Duplicates (e.g. ["ICE"],["ICE"],["RE"],["ICE"],["RE"] > ["ICE"],["RE"])
         typelistsorted =new Set(typelist)
         citylistsorted =new Set(citylist)
+        hourlistsorted =new Set(hourlist)
 
         //Create a List of Traintypes with a counter of its occurances
         var typelistwithcounter = [];
@@ -56,6 +73,23 @@ window.onload = function(){
 
         }
 
+        var hourlistwithcounter = [];
+
+        for (hour of hourlistsorted){
+          
+          var hourcounter = 0;
+          
+          for (currentitem of hourlist){          
+            if(currentitem == hour){
+              hourcounter++;
+            }
+          }
+          hourlistwithcounter.push([hourcounter,hour]);
+
+        }
+
+        console.log(hourlistwithcounter);
+
         //Create a Places of Traintypes with a counter of its occurances
         var citylistwithcounter = [];
 
@@ -72,6 +106,7 @@ window.onload = function(){
         }
         
         //Create Sorted List that sorts the list descending by the counter
+        sortedhourlistwithcounter = hourlistwithcounter.sort(function(a,b) { return a[0] - b[0]; })
         sortedtypelistwithcounter = typelistwithcounter.sort(function(a,b) { return b[0] - a[0]; });
         sortedcitylistwithcounter = citylistwithcounter.sort(function(a,b) { return b[0] - a[0]; });
         
@@ -235,6 +270,20 @@ window.onload = function(){
           var chart = new google.visualization.BarChart(document.getElementById('myChart'));
           chart.draw(datacomparison, optionsccomparison);
 
+          //data for klassifizierungs chart
+          var stundendata = new google.visualization.DataTable();
+          stundendata.addColumn('string', 'word');
+          stundendata.addColumn('number', 'Fahrten');
+          for (item of sortedhourlistwithcounter){
+            stundendata.addRow([item[1]+ "Uhr" , item[0]]);
+          }
+
+          var histogramoptions = {
+            title:'Stunden'
+          };
+
+          var visualization = new google.visualization.BarChart(document.getElementById('histogram'));
+          visualization.draw(stundendata, histogramoptions);
           
         }
       };
