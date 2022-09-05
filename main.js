@@ -84,7 +84,7 @@ window.onload = function(){
               hourcounter++;
             }
           }
-          hourlistwithcounter.push([hourcounter,hour]);
+          hourlistwithcounter.push([hour,hourcounter]);
 
         }
 
@@ -257,6 +257,9 @@ window.onload = function(){
           var datacomparison = new google.visualization.DataTable();
           datacomparison.addColumn('string', 'word');
           datacomparison.addColumn('number', 'Anzahl Fahrten');
+
+          console.log(Klassifizierung);
+
           for (item of Klassifizierung){
             datacomparison.addRow([item[0] , item[1]]);
           }
@@ -270,19 +273,23 @@ window.onload = function(){
           var chart = new google.visualization.BarChart(document.getElementById('myChart'));
           chart.draw(datacomparison, optionsccomparison);
 
-          //data for klassifizierungs chart
+          
           var stundendata = new google.visualization.DataTable();
           stundendata.addColumn('string', 'word');
-          stundendata.addColumn('number', 'Fahrten');
+          stundendata.addColumn('number', 'Anzahl Fahrten');
+
+          console.log(sortedhourlistwithcounter);
+
           for (item of sortedhourlistwithcounter){
-            stundendata.addRow([item[1]+ "Uhr" , item[0]]);
+            stundendata.addRow([item[0]+ "Uhr" , item[1]]);
           }
 
+          //stundendata.sort(function(a,b) { return a[0] - b[0]; });
           var histogramoptions = {
             title:'Stunden'
           };
 
-          var visualization = new google.visualization.BarChart(document.getElementById('histogram'));
+          var visualization = new google.visualization.ColumnChart(document.getElementById('histogram'));
           visualization.draw(stundendata, histogramoptions);
           
         }
