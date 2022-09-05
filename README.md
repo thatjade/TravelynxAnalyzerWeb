@@ -6,3 +6,9 @@ load your [travelynx](https://travelynx.de/history) ```history.json``` file on t
 
 
 ![Screenshot of Travelynx](https://github.com/thisjade/TravelynxAnalyzer/blob/70afc519f08f2045be6ed5b56fc6ddb171c5a6af/test.png)
+
+click on ```Browse``` and then load your ```history.json``` and click on ```Verarbeiten```
+
+
+
+after that you will see statistics like this 
