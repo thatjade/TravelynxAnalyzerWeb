@@ -75,7 +75,7 @@ window.onload = function(){
         
 
         var FVFilter = ["ICE","IC","FLX","EC","ECE"];
-        var NVFilter = ["RB","HLB","S","RE","VIA","RT","TL","FEX","ME","WFB"];
+        var NVFilter = ["RB","HLB","S","RE","VIA","RT","TL","FEX","ME","WFB","TLX"];
         var BusFilter = ["Bus"];
 
         var Fernverkehr = 0;
