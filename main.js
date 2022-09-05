@@ -229,7 +229,8 @@ window.onload = function(){
 
           //Options for Zugarten Pie Chart
           var optionstype = {
-            title:'Zugarten'
+            title:'Zugarten',
+            chartArea: {left:"5%", width:"70%"}
           };
           
           //Creation of Zugarten Pie Chart
@@ -246,7 +247,8 @@ window.onload = function(){
 
           //Options for City Pie Chart
           var optionscity = {
-            title:'Städte'
+            title:'Städte',
+            chartArea: {left:"5%", width:"80%"}
           };
           
           //creation of city pie chart
