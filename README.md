@@ -9,6 +9,10 @@ load your [travelynx](https://travelynx.de/history) ```history.json``` file on t
 
 click on ```Browse``` and then load your ```history.json``` and click on ```Verarbeiten```
 
-
+![Controls](https://github.com/thisjade/TravelynxAnalyzerWeb/blob/6259e9597f5d8d41f128660643fb23920e7a6f9d/controls.png)
 
 after that you will see statistics like this 
+
+![Charts](https://github.com/thisjade/TravelynxAnalyzerWeb/blob/6259e9597f5d8d41f128660643fb23920e7a6f9d/stats.png)
+
+![Table](https://github.com/thisjade/TravelynxAnalyzerWeb/blob/6259e9597f5d8d41f128660643fb23920e7a6f9d/table.png)
