@@ -121,7 +121,7 @@ window.onload = function(){
 
         //Filters for Classification
         var FVFilter = ["ICE","IC","FLX","EC","ECE","THA"];
-        var NVFilter = ["RB","HLB","S","RE","VIA","RT","TL","FEX","ME","WFB","TLX","STR","U"];
+        var NVFilter = ["RB","HLB","S","RE","VIA","RT","TL","FEX","ME","WFB","TLX","STR","U","Os","R"];
         var BusFilter = ["Bus"];
 
         //Adding the Fernverkehr Counter to the List
