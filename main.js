@@ -121,8 +121,9 @@ window.onload = function(){
 
         //Filters for Classification
         var FVFilter = ["ICE","IC","FLX","EC","ECE","THA"];
-        var NVFilter = ["RB","HLB","S","RE","VIA","RT","TL","FEX","ME","WFB","TLX","STR","U","Os","R"];
+        var NVFilter = ["RB","HLB","S","RE","VIA","RT","TL","FEX","ME","WFB","TLX","U","Os","R"];
         var BusFilter = ["Bus"];
+        var STRFilter = ["STR"];
 
         //Adding the Fernverkehr Counter to the List
         var Fernverkehr = 0;
@@ -161,6 +162,19 @@ window.onload = function(){
 
         }
         Klassifizierung.push(["Bus",Bus]);
+
+        var Str = 0;
+        for (type of STRFilter){
+
+          
+          for (currentitem of result){          
+            if(currentitem.type == type){
+              Str++;
+            }
+          }
+
+        }
+        Klassifizierung.push(["Str",Str]);
 
         //Create the table for the Train Types
         for (item of sortedtypelistwithcounter){
