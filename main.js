@@ -174,7 +174,7 @@ window.onload = function(){
           }
 
         }
-        Klassifizierung.push(["Str",Str]);
+        Klassifizierung.push(["STR",Str]);
 
         //Create the table for the Train Types
         for (item of sortedtypelistwithcounter){
