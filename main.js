@@ -9,10 +9,10 @@ window.onload = function(){
         alert("Fehlerhafte Datei/Eingabe");
         document.getElementById('import').disabled = false;
       }
-      
+
       var fr = new FileReader();
-      
-      fr.onload = function(e) { 
+
+      fr.onload = function(e) {
         console.log(e);
 
         //Parse JSON into result variable
@@ -61,10 +61,10 @@ window.onload = function(){
         var typelistwithcounter = [];
 
         for (type of typelistsorted){
-          
+
           var typecounter = 0;
-          
-          for (currentitem of result){          
+
+          for (currentitem of result){
             if(currentitem.type == type){
               typecounter++;
             }
@@ -76,10 +76,10 @@ window.onload = function(){
         var hourlistwithcounter = [];
 
         for (hour of hourlistsorted){
-          
+
           var hourcounter = 0;
-          
-          for (currentitem of hourlist){          
+
+          for (currentitem of hourlist){
             if(currentitem == hour){
               hourcounter++;
             }
@@ -94,22 +94,22 @@ window.onload = function(){
         var citylistwithcounter = [];
 
         for (city of citylistsorted){
-          
+
           var citycounter = 0;
-          
-          for (currentitem of result){          
+
+          for (currentitem of result){
             if(currentitem.to_name == city){
               citycounter++;
             }
           }
           citylistwithcounter.push([citycounter,city]);
         }
-        
+
         //Create Sorted List that sorts the list descending by the counter
         sortedhourlistwithcounter = hourlistwithcounter.sort(function(a,b) { return a[0] - b[0]; })
         sortedtypelistwithcounter = typelistwithcounter.sort(function(a,b) { return b[0] - a[0]; });
         sortedcitylistwithcounter = citylistwithcounter.sort(function(a,b) { return b[0] - a[0]; });
-        
+
 
         //function to round number to 2 decimals 
         function roundToTwo(num) {
@@ -120,15 +120,15 @@ window.onload = function(){
         var Klassifizierung = [];
 
         //Filters for Classification
-        var FVFilter = ["ICE","IC","FLX","EC","ECE","THA"];
-        var NVFilter = ["RB","HLB","S","RE","VIA","RT","TL","FEX","ME","WFB","TLX","U","Os","R"];
+        var FVFilter = ["ICE","IC","FLX","EC","ECE","THA","RJ","RJX","WB","NJ","D","TGV","UEX","R","EST"];
+        var NVFilter = ["RB","HLB","S","RE","VIA","RT","TL","FEX","ME","WFB","TLX","U","Os","OPB","ERX","NBE","NWB","AKN","TRI","EB","EVB","STx","ENO","DWE","ARV","FEX"];
         var BusFilter = ["Bus"];
         var STRFilter = ["STR"];
 
         //Adding the Fernverkehr Counter to the List
         var Fernverkehr = 0;
         for (type of FVFilter){
-          for (currentitem of result){          
+          for (currentitem of result){
             if(currentitem.type == type){
               Fernverkehr++;
             }
@@ -140,7 +140,7 @@ window.onload = function(){
         //Adding the Nahverkehr Counter to the List
         var Nahverkehr = 0;
         for (type of NVFilter){
-          for (currentitem of result){          
+          for (currentitem of result){
             if(currentitem.type == type){
               Nahverkehr++;
             }
@@ -153,8 +153,8 @@ window.onload = function(){
         var Bus = 0;
         for (type of BusFilter){
 
-          
-          for (currentitem of result){          
+
+          for (currentitem of result){
             if(currentitem.type == type){
               Bus++;
             }
@@ -166,8 +166,8 @@ window.onload = function(){
         var Str = 0;
         for (type of STRFilter){
 
-          
-          for (currentitem of result){          
+
+          for (currentitem of result){
             if(currentitem.type == type){
               Str++;
             }
@@ -180,11 +180,11 @@ window.onload = function(){
         for (item of sortedtypelistwithcounter){
 
           var table = document.getElementById("traintypetable");
-        
+
           var cell = document.createElement("td");
           var celltext = document.createTextNode(item[1]);
           cell.appendChild(celltext);
-        
+
           var countercell = document.createElement("td");
           var countercelltext = document.createTextNode(item[0]);
           countercell.appendChild(countercelltext);
@@ -192,12 +192,12 @@ window.onload = function(){
           var percentagecell = document.createElement("td");
           var percentagecelltext = document.createTextNode(roundToTwo((100*item[0])/allrides)+"%");
           percentagecell.appendChild(percentagecelltext);
-        
+
           var row = document.createElement("tr");
           row.appendChild(cell);
           row.appendChild(countercell);
           row.appendChild(percentagecell);
-        
+
           table.appendChild(row);
 
         }
@@ -214,7 +214,7 @@ window.onload = function(){
           var countercell = document.createElement("td");
           var countercelltext = document.createTextNode(item[0]);
           countercell.appendChild(countercelltext);
-          
+
           var percentagecell = document.createElement("td");
           var percentagecelltext = document.createTextNode(roundToTwo((100*item[0])/allrides)+"%");
           percentagecell.appendChild(percentagecelltext);
@@ -223,7 +223,7 @@ window.onload = function(){
           row.appendChild(cell);
           row.appendChild(countercell);
           row.appendChild(percentagecell);
-        
+
           table.appendChild(row);
 
         }
@@ -246,7 +246,7 @@ window.onload = function(){
             title:'Zugarten',
             chartArea: {left:"5%", width:"70%"}
           };
-          
+
           //Creation of Zugarten Pie Chart
           var charttype = new google.visualization.PieChart(document.getElementById('TypeChart'));
           charttype.draw(datatype, optionstype);
@@ -264,11 +264,11 @@ window.onload = function(){
             title:'Städte',
             chartArea: {left:"5%", width:"80%"}
           };
-          
+
           //creation of city pie chart
           var chartcity = new google.visualization.PieChart(document.getElementById('CityChart'));
           chartcity.draw(datacity, optionscity);
-          
+
           //data for klassifizierungs chart
           var datacomparison = new google.visualization.DataTable();
           datacomparison.addColumn('string', 'word');
@@ -294,12 +294,12 @@ window.onload = function(){
             title:'Fahrten in Zugklasse',
             legend: { position: "none" }
           };
-          
+
           //creation of klassifizierungschart
           var chart = new google.visualization.BarChart(document.getElementById('myChart'));
           chart.draw(datacomparison, optionsccomparison);
 
-          
+
           var stundendata = new google.visualization.DataTable();
           stundendata.addColumn('string', 'Stunde');
           stundendata.addColumn('number', 'Anzahl Fahrten');
@@ -319,7 +319,7 @@ window.onload = function(){
 
           var visualization = new google.visualization.ColumnChart(document.getElementById('histogram'));
           visualization.draw(stundendata, histogramoptions);
-          
+
         }
       };
 
