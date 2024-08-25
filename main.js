@@ -305,7 +305,8 @@ window.onload = function(){
           //options for klassifizierungschart
           var optionsccomparison = {
             title:'Fahrten in Zugklasse',
-            legend: { position: "none" }
+            legend: { position: "none" },
+            width: 1000
           };
 
           //creation of klassifizierungschart
