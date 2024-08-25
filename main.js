@@ -175,7 +175,7 @@ window.onload = function(){
           }
 
         }
-        Klassifizierung.push(["STR",Str]);
+        Klassifizierung.push(["Tram",Str]);
 
         //Adding the U-Bahn Counter to the List
         var UBahn = 0;
