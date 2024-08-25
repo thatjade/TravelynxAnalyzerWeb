@@ -120,10 +120,11 @@ window.onload = function(){
         var Klassifizierung = [];
 
         //Filters for Classification
-        var FVFilter = ["ICE","IC","FLX","EC","ECE","THA","RJ","RJX","WB","NJ","D","TGV","UEX","R","EST"];
-        var NVFilter = ["RB","HLB","S","RE","VIA","RT","TL","FEX","ME","WFB","TLX","U","Os","OPB","ERX","NBE","NWB","AKN","TRI","EB","EVB","STx","ENO","DWE","ARV","FEX"];
+        var FVFilter = ["ICE","IC","FLX","EC","ECE","THA","RJ","RJX","WB","NJ","D","TGV","UEX","R","EST","FR","ICN","EN"];
+        var NVFilter = ["RB","HLB","S","RE","VIA","RT","TL","FEX","ME","WFB","TLX","Os","OPB","ERX","NBE","NWB","AKN","TRI","EB","EVB","STx","ENO","DWE","ARV","FEX"];
         var BusFilter = ["Bus"];
         var STRFilter = ["STR"];
+        var UFilter = ["U-Bahn", "U"];
 
         //Adding the Fernverkehr Counter to the List
         var Fernverkehr = 0;
@@ -174,7 +175,19 @@ window.onload = function(){
           }
 
         }
-        Klassifizierung.push(["STR",Str]);
+        Klassifizierung.push(["Straßenbahn",Str]);
+
+        //Adding the U-Bahn Counter to the List
+        var UBahn = 0;
+        for (type of UFilter){
+          for (currentitem of result){
+            if(currentitem.type == type){
+              UBahn++;
+            }
+          }
+
+        }
+        Klassifizierung.push(["U-Bahn",UBahn]);
 
         //Create the table for the Train Types
         for (item of sortedtypelistwithcounter){
@@ -292,7 +305,8 @@ window.onload = function(){
           //options for klassifizierungschart
           var optionsccomparison = {
             title:'Fahrten in Zugklasse',
-            legend: { position: "none" }
+            legend: { position: "none" },
+            width: 1000
           };
 
           //creation of klassifizierungschart
