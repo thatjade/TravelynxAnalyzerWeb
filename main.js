@@ -120,10 +120,10 @@ window.onload = function(){
         var Klassifizierung = [];
 
         //Filters for Classification
-        var FVFilter = ["ICE","IC","FLX","EC","ECE","THA","RJ","RJX","WB","NJ","D","TGV","UEX","R","EST","FR","ICN","EN","ICD"];
+        var FVFilter = ["ICE","IC","FLX","EC","ECE","THA","RJ","RJX","WB","NJ","D","TGV","UEX","R","EST","FR","ICN","EN","ICD","EIC"];
         var NVFilter = ["RB","HLB","S","RE","VIA","RT","TL","FEX","ME","WFB","TLX","Os","OPB","ERX","NBE","NWB","AKN","TRI","EB","EVB","STx","ENO","DWE","ARV","FEX"];
         var BusFilter = ["Bus"];
-        var STRFilter = ["STR"];
+        var STRFilter = ["STR", "Trm", "Tram", "Straßenbahn"];
         var UFilter = ["U-Bahn", "U"];
 
         //Adding the Fernverkehr Counter to the List
