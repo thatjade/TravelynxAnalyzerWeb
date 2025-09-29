@@ -125,7 +125,7 @@ window.onload = function(){
         var BusFilter = ["Bus","BUS","NachtBus","Niederflurbus","Stadtbus","MetroBus","PlusBus","Landbus","Regionalbus","RegionalBus","SB","ExpressBus","BSV","RVV-Bus-Linie","Buslinie","Omnibus","RegioBus"];
         var STRFilter = ["STR","Trm","Tram","Straßenbahn","TRAM","STB","RNV","Strb","NachtTram","Stadtbahn","Niederflurstrab"];
         var UFilter = ["U-Bahn","U","Metro","SUBWAY","METRO","M","UBAHN"];
-        var FerryFilter = ["Fh","Schiff","SCH","KAT","FERRY","Fähre"];
+        var FerryFilter = ["Fäh","Schiff","SCH","KAT","FERRY","Fähre"];
 
         //Adding the Fernverkehr Counter to the List
         var Fernverkehr = 0;
@@ -351,4 +351,5 @@ window.onload = function(){
       fr.readAsText(files.item(0));
     };
 };
+
 
