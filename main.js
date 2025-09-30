@@ -26,6 +26,8 @@ window.onload = function(){
         var datelist = [];
 
         var hourlist = [];
+        //List of operators (e.g. DB Fernverkehr AG)
+        var operatorlist = [];
 
         //Fill the List of Train Types
         for(var i in result){
@@ -37,17 +39,21 @@ window.onload = function(){
           citylist.push(result[i].to_name);
         }
 
-
-
         for(var i in result){
           datelist.push(new Date(result[i].sched_dep_ts * 1000));
         }
-
 
         for(var i in datelist){
           hourlist.push(datelist[i].getHours());
         }
 
+        //Fill the list of operators
+        for(var i in result)
+        {
+          if (result[i].user_data && Array.isArray(result[i].user_data.operators)) {
+            operatorlist.push(...result[i].user_data.operators);
+          }
+        }
 
         //Variable that counts all rides
         var allrides = typelist.length;
@@ -56,6 +62,7 @@ window.onload = function(){
         typelistsorted =new Set(typelist)
         citylistsorted =new Set(citylist)
         hourlistsorted =new Set(hourlist)
+        operatorlistsorted = new Set(operatorlist)
 
         //Create a List of Traintypes with a counter of its occurances
         var typelistwithcounter = [];
@@ -105,10 +112,29 @@ window.onload = function(){
           citylistwithcounter.push([citycounter,city]);
         }
 
+        //Create a List of Trainoperators with a counter of its occurances
+        var operatorlistwithcounter = [];
+
+        for (let operator of operatorlistsorted) {
+          let operatorcounter = 0;
+
+          for (let currentitem of result) {
+            if (
+                currentitem.user_data &&
+                Array.isArray(currentitem.user_data.operators) &&
+                currentitem.user_data.operators.includes(operator)
+            ) {
+              operatorcounter++;
+            }
+          }
+          operatorlistwithcounter.push([operatorcounter, operator]);
+        }
+
         //Create Sorted List that sorts the list descending by the counter
-        sortedhourlistwithcounter = hourlistwithcounter.sort(function(a,b) { return a[0] - b[0]; })
+        sortedhourlistwithcounter = hourlistwithcounter.sort(function(a,b) { return a[0] - b[0]; });
         sortedtypelistwithcounter = typelistwithcounter.sort(function(a,b) { return b[0] - a[0]; });
         sortedcitylistwithcounter = citylistwithcounter.sort(function(a,b) { return b[0] - a[0]; });
+        sortedoperatorlistwithcounter = operatorlistwithcounter.sort(function(a,b) { return b[0] - a[0]; });
 
 
         //function to round number to 2 decimals 
@@ -223,7 +249,6 @@ window.onload = function(){
           row.appendChild(percentagecell);
 
           table.appendChild(row);
-
         }
 
         //Create the Table for the Places
@@ -249,7 +274,30 @@ window.onload = function(){
           row.appendChild(percentagecell);
 
           table.appendChild(row);
+        }
 
+        //Create a table for the operators
+        for (item of sortedoperatorlistwithcounter){
+          var table = document.getElementById("operatortable");
+
+          var cell = document.createElement("td");
+          var celltext = document.createTextNode(item[1]);
+          cell.appendChild(celltext);
+
+          var countercell = document.createElement("td");
+          var countercelltext = document.createTextNode(item[0]);
+          countercell.appendChild(countercelltext);
+
+          var percentagecell = document.createElement("td");
+          var percentagecelltext = document.createTextNode(roundToTwo((100*item[0])/allrides)+"%");
+          percentagecell.appendChild(percentagecelltext);
+
+          var row = document.createElement("tr");
+          row.appendChild(cell);
+          row.appendChild(countercell);
+          row.appendChild(percentagecell);
+
+          table.appendChild(row);
         }
 
         //Load google charts script
@@ -293,6 +341,24 @@ window.onload = function(){
           var chartcity = new google.visualization.PieChart(document.getElementById('CityChart'));
           chartcity.draw(datacity, optionscity);
 
+          //Data for Operator Pie Chart
+          var dataoperator = new google.visualization.DataTable();
+          dataoperator.addColumn('string', 'word');
+          dataoperator.addColumn('number', 'count');
+          for (item of sortedoperatorlistwithcounter){
+            dataoperator.addRow([item[1] , item[0]]);
+          }
+
+          //Options for City Pie Chart
+          var optionsoperator = {
+            title:'Betreiber',
+            chartArea: {left:"5%", width:"80%"}
+          };
+
+          //creation of city pie chart
+          var chartoperator = new google.visualization.PieChart(document.getElementById('OperatorChart'));
+          chartoperator.draw(dataoperator, optionsoperator);
+
           //data for klassifizierungs chart
           var datacomparison = new google.visualization.DataTable();
           datacomparison.addColumn('string', 'word');
@@ -321,7 +387,7 @@ window.onload = function(){
           };
 
           //creation of klassifizierungschart
-          var chart = new google.visualization.BarChart(document.getElementById('myChart'));
+          var chart = new google.visualization.BarChart(document.getElementById('classesChart'));
           chart.draw(datacomparison, optionsccomparison);
 
 
@@ -344,7 +410,6 @@ window.onload = function(){
 
           var visualization = new google.visualization.ColumnChart(document.getElementById('histogram'));
           visualization.draw(stundendata, histogramoptions);
-
         }
       };
 
