@@ -173,12 +173,12 @@ window.onload = function() {
             var Klassifizierung = [];
 
             //Filters for Classification
-            var FVFilter = ["ICE", "IC", "FLX", "EC", "ECE", "THA", "RJ", "RJX", "WB", "NJ", "D", "TGV", "UEX", "R", "EST", "FR", "ICN", "EN", "ICD", "EIC", "EC ", "LONG_DISTANCE", "NZ", "ICE ", "NJ", "HIGHSPEED_RAIL", "NIGHT_RAIL", "OGV", "ECD", "ECB", "EUR"];
-            var NVFilter = ["RB", "HLB", "S", "RE", "VIA", "RT", "TL", "FEX", "ME", "WFB", "TLX", "Os", "OPB", "ERX", "NBE", "NWB", "AKN", "TRI", "EB", "EVB", "STx", "ENO", "DWE", "ARV", "FEX", "TER", "IR", "IRE", "SWE", "STN", "REGIONAL_FAST_RAIL", "IR ", "RB ", "REX", "R-Bahn", "REGIONAL_RAIL", "R", "Regionalzug", "MEX", "SMD", "SBB", "ag", "RRB", "RTB", "BRB", "CJX"];
-            var BusFilter = ["Bus", "BUS", "NachtBus", "Niederflurbus", "Stadtbus", "MetroBus", "PlusBus", "Landbus", "Regionalbus", "RegionalBus", "SB", "ExpressBus", "BSV", "RVV-Bus-Linie", "Buslinie", "Omnibus", "RegioBus", "StadtBus"];
-            var STRFilter = ["STR", "Trm", "Tram", "Straßenbahn", "TRAM", "STB", "RNV", "Strb", "NachtTram", "Stadtbahn", "Niederflurstrab", "Stb"];
-            var UFilter = ["U-Bahn", "U", "Metro", "SUBWAY", "METRO", "M", "UBAHN"];
-            var FerryFilter = ["Fäh", "Schiff", "SCH", "KAT", "FERRY", "Fähre"];
+            var FVFilter = [ "D", "ECB", "EC", "EC ", "ECD", "ECE", "EIC", "EIP", "EN", "ES", "EST", "EUR", "FLX", "FR", "GV", "HIGHSPEED_RAIL", "IC", "ICD", "ICE", "ICE ", "ICN", "LE", "LONG_DISTANCE", "NIGHT_RAIL", "NJ", "NZ", "OGV", "RJ", "RJX", "TGV", "THA", "UEX", "UEX", "WB" ];
+            var NVFilter = [ "ABR", "ag", "AKN", "ALX", "ARV", "AVG", "BRB", "CAN", "CB", "CJX", "DWE", "EB", "ENO", "ERB", "erx", "EVB", "FEX", "HLB", "IR", "IR ", "IRE", "MDS", "ME", "MEX", "MRB", "NBE", "NWB", "NX", "OE", "OPB", "Os", "R", "R-Bahn", "RB", "RB ", "RE", "REGIONAL_FAST_RAIL", "REGIONAL_RAIL", "Regionalzug", "REX", "RRB", "RS", "RT", "RTB", "S", "SBB", "SBH", "SCB", "SCF", "SMD", "STN", "STx", "SWE", "TER", "TL", "TLX", "TRI", "VBG", "VIA", "vlx", "WBA", "WFB" ];
+            var BusFilter = [ "BSV", "BUS", "Bus", "Buslinie", "ExpressBus", "Landbus", "MetroBus", "NachtBus", "Niederflurbus", "Omnibus", "PlusBus", "RegionalBus", "Regionalbus", "RegioBus", "RVV-Bus-Linie", "SB", "StadtBus", "Stadtbus" ];
+            var STRFilter = [ "NachtTram", "Niederflurstrab", "RNV", "STB", "Stadtbahn", "Strb", "STR", "Straßenbahn", "Stb", "TRAM", "Tram", "Trm" ];
+            var UFilter = [ "M", "METRO", "Metro", "SUBWAY", "U", "U-Bahn", "UBAHN" ];
+            var FerryFilter = [ "FERRY", "Fäh", "Fähre", "KAT", "SCH", "Schiff" ];
 
             //Adding the Fernverkehr Counter to the List
             var Fernverkehr = 0;
